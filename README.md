@@ -9,7 +9,7 @@ CKJ: **Graphics Placeholder**
 
 Emotion and empathy are at the heart of human interaction, shaping how we understand and respond to one another. While emotion recognition has made significant strides in NLP and AI, driven by benchmark datasets like IEMOCAP, empathy remains underexplored due to the lack of standardized datasets and benchmarks. This paper provides an integrated summary of available resources for emotion and empathy-related tasks, including datasets, labeling conventions, and SOTA models. By synthesizing these elements, we aim to bridge existing gaps, introduce SOTA AI/ML models, and discuss implications and future directions to advance AI-driven understanding of human emotions and empathy.
 
-EmoPathy is a companion repository to this review paper, designed as a centralized hub for researchers. It consolidates the datasets, models, and insights discussed in the paper, offering a practical and insightful resource for fostering innovation and exploration in emotion and empathy recognition.
+Emopathy is a companion repository to this review paper, designed as a centralized hub for researchers. It consolidates the datasets, models, and insights discussed in the paper, offering a practical and insightful resource for fostering innovation and exploration in emotion and empathy recognition.
 
 ---
 
