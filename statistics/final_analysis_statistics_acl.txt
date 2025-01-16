@@ -1,0 +1,19 @@
+Analysis Statistics:
+
+EMOTION Papers:
+Total papers: 718
+Dataset papers: 380
+Machine Learning papers: 604
+AI/NLP papers: 167
+
+EMPATHY Papers:
+Total papers: 35
+Dataset papers: 20
+Machine Learning papers: 28
+AI/NLP papers: 13
+
+EMOTION_AND_EMPATHY Papers:
+Total papers: 24
+Dataset papers: 9
+Machine Learning papers: 20
+AI/NLP papers: 7

@@ -143,9 +143,6 @@ def analyze_databases(database_dir):
     return dict(database_stats), global_stats, papers_info
 
 def save_paper_info_to_csv(papers_info, output_file):
-    """
-    논문 정보를 CSV 파일로 저장
-    """
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = [
             'database', 'title', 'authors', 'year', 'journal', 
@@ -155,10 +152,9 @@ def save_paper_info_to_csv(papers_info, output_file):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for paper in papers_info:
-            # authors와 keywords를 문자열로 변환
             paper['authors'] = '; '.join(paper['authors']) if isinstance(paper['authors'], list) else paper['authors']
             paper['keywords'] = '; '.join(paper['keywords']) if isinstance(paper['keywords'], list) else paper['keywords']
-            # boolean 값을 'Yes'/'No'로 변환
+
             paper['is_dataset'] = 'Yes' if paper['is_dataset'] else 'No'
             paper['is_ml'] = 'Yes' if paper['is_ml'] else 'No'
             writer.writerow(paper)
@@ -188,7 +184,7 @@ def print_and_save_stats(database_stats, global_stats, output_file):
                 write_line(f"  - Machine Learning papers: {stats[category]['machine_learning']}")
 
 def main():
-    database_dir = '/Volumes/ssd/01-ckj-postdoc/LLM-CCR/boolean-search/all-zot-items'
+    database_dir = '/Volumes/ssd/01-ckj-postdoc/emopathy-dataset-review/boolean-search/all-zot-items'
     
     database_stats, global_stats, papers_info = analyze_databases(database_dir)
     
