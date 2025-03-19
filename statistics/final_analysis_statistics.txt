@@ -1,0 +1,95 @@
+Overall Statistics:
+Total papers across all databases: 101137
+Total unique papers: 98664
+Total duplicates removed: 2473
+
+Total emotion related papers: 2110
+  - Dataset related papers: 198
+  - Machine Learning/Deep Learning papers: 653
+
+Total empathy related papers: 54
+  - Dataset related papers: 7
+  - Machine Learning/Deep Learning papers: 3
+
+Total emotion_and_empathy related papers: 27
+  - Dataset related papers: 0
+  - Machine Learning/Deep Learning papers: 1
+
+Statistics by database:
+
+Database: scopus
+Emotion papers: 858
+  - Dataset papers: 140
+  - Machine Learning papers: 603
+Empathy papers: 3
+  - Dataset papers: 0
+  - Machine Learning papers: 1
+Emotion_and_empathy papers: 0
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+
+Database: google-scholar
+Emotion papers: 256
+  - Dataset papers: 3
+  - Machine Learning papers: 4
+Empathy papers: 3
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+Emotion_and_empathy papers: 1
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+
+Database: proquest
+Emotion papers: 10
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+Empathy papers: 0
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+Emotion_and_empathy papers: 0
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+
+Database: acl
+Emotion papers: 612
+  - Dataset papers: 10
+  - Machine Learning papers: 2
+Empathy papers: 24
+  - Dataset papers: 1
+  - Machine Learning papers: 0
+Emotion_and_empathy papers: 23
+  - Dataset papers: 0
+  - Machine Learning papers: 1
+
+Database: acm
+Emotion papers: 48
+  - Dataset papers: 4
+  - Machine Learning papers: 14
+Empathy papers: 11
+  - Dataset papers: 1
+  - Machine Learning papers: 1
+Emotion_and_empathy papers: 2
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+
+Database: anthology+abstracts
+Emotion papers: 291
+  - Dataset papers: 36
+  - Machine Learning papers: 10
+Empathy papers: 13
+  - Dataset papers: 5
+  - Machine Learning papers: 1
+Emotion_and_empathy papers: 1
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+
+Database: web-of-science
+Emotion papers: 35
+  - Dataset papers: 5
+  - Machine Learning papers: 20
+Empathy papers: 0
+  - Dataset papers: 0
+  - Machine Learning papers: 0
+Emotion_and_empathy papers: 0
+  - Dataset papers: 0
+  - Machine Learning papers: 0
