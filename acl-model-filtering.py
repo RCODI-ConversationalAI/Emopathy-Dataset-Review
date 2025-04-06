@@ -134,7 +134,7 @@ def main(spreadsheet_path, download_dir, output_csv, sort_by="f1_score"):
 
 if __name__ == "__main__":
     SPREADSHEET_PATH = "statistics/final_automatically_screened_acl_papers.csv"
-    DOWNLOAD_DIR = "emopathy-acl-model-papers" # Your dir for pdf download
+    DOWNLOAD_DIR = "/Users/audreylu/software_projects/research/emopathy-dataset-review/emopathy-acl-model-papers" # Your dir for pdf download
     OUTPUT_CSV = "statistics/model_performance.csv"
     SORT_BY = "f1_score"                 # Metric to sort by
 
