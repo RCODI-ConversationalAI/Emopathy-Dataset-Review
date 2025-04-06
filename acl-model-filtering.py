@@ -133,9 +133,9 @@ def main(spreadsheet_path, download_dir, output_csv, sort_by="f1_score"):
     print(f"Results saved to {output_csv}")
 
 if __name__ == "__main__":
-    SPREADSHEET_PATH = "/Volumes/ssd/01-ckj-postdoc/emopathy-dataset-review/statistics/final_automatically_screened_acl_papers.csv"
-    DOWNLOAD_DIR = "/Volumes/ssd/01-ckj-postdoc/emopathy-acl-model-papers" # Your dir for pdf download
-    OUTPUT_CSV = "/Volumes/ssd/01-ckj-postdoc/emopathy-dataset-review/statistics/model_performance.csv"
+    SPREADSHEET_PATH = "statistics/final_automatically_screened_acl_papers.csv"
+    DOWNLOAD_DIR = "emopathy-acl-model-papers" # Your dir for pdf download
+    OUTPUT_CSV = "statistics/model_performance.csv"
     SORT_BY = "f1_score"                 # Metric to sort by
 
     if not os.path.exists(DOWNLOAD_DIR):
