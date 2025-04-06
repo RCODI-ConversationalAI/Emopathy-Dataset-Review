@@ -80,7 +80,7 @@ def extract_performance_and_models(text):
         
         # Find models in the section
         found_models = re.findall(combined_model_pattern, section_content, re.IGNORECASE)
-        unique_models = list(set(model.split("s", 1)[0] for model in found_models))  # Normalize
+        unique_models = list(set(tuple(list(model).split("s", 1)[0]) for model in found_models))  # Normalize
         
         # Find performance metrics in the section
         found_metrics = re.findall(combined_performance_pattern, section_content, re.IGNORECASE)
