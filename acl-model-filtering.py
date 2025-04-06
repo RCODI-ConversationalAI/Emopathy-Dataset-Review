@@ -16,7 +16,7 @@ def download_pdfs(spreadsheet_path, download_dir):
         "download.default_directory": download_dir,
         "plugins.always_open_pdf_externally": True
     })
-    driver = webdriver.Chrome(options=options, service=Service("chromedriver"))  # Replace with your chromedriver path
+    driver = webdriver.Chrome(options=options, service=Service("/usr/local/bin/chromedriver"))  # Replace with your chromedriver path
     
     for index, row in df.iterrows():
         url = row['url']
