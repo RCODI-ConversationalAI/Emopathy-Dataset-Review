@@ -92,9 +92,14 @@ def extract_performance_and_models(text):
 
     # Extract models
     models = set()
+    seen_models = set()  # lowercased models to avoid duplicates
     for token in doc:
         if re.match(combined_model_pattern, token.text, re.IGNORECASE):
-            models.add(token.text)
+            model = token.text
+            model_lower = model.lower()
+            if model_lower not in seen_models:
+                seen_models.add(model_lower)  # Add the lowercase version to the helper set
+                models.add(model)  # Add the original case version to the models set
 
     # Extract metrics
     metrics = defaultdict(float)
