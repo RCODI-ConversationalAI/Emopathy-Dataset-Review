@@ -1,4 +1,5 @@
 import os
+import re
 import io
 import pandas as pd
 import fitz  # PyMuPDF
@@ -72,32 +73,38 @@ def extract_text_from_pdf(pdf_stream):
 def extract_performance_and_models(text):
     # Tokenize the text using SpaCy
     doc = nlp(text)
-    
-    # Define model and metric keywords
-    model_keywords = {
-        "lstm", "cnn", "transformer", "bert", "gru", "rnn", "xlnet", "roberta",
-        "gpt", "svm", "random forest", "xgboost", "lightgbm", "catboost", "knn",
-        "naive bayes", "decision tree", "linear regression", "logistic regression", "ensemble"
-    }
-    metric_keywords = {
-        "accuracy", "f1 score", "precision", "recall", "auc", "bleu", "rouge", "mse", "rmse"
-    }
-    
-    # Extract models and metrics
+
+    # Define regex patterns for models and metrics
+    model_patterns = [
+        r"\bLSTM(s?)\b", r"\bCNN(s?)\b", r"\bTransformer(s?)\b", r"\bBERT(s?)\b",
+        r"\bGRU(s?)\b", r"\bRNN(s?)\b", r"\bXLNet(s?)\b", r"\bRoBERTa(s?)\b",
+        r"\bGPT(-\d+)?\b", r"\bSVM(s?)\b", r"\bRandom Forest(s?)\b", r"\bXGBoost\b",
+        r"\bLightGBM\b", r"\bCatBoost\b", r"\bKNN\b", r"\bNaive Bayes\b",
+        r"\bDecision Tree(s?)\b", r"\bLinear Regression\b", r"\bLogistic Regression\b",
+        r"\bEnsemble(s?)\b"
+    ]
+    combined_model_pattern = r"(?:" + "|".join(model_patterns) + r")"
+
+    metric_patterns = [
+        r"(accuracy|f1 score|precision|recall|auc|bleu|rouge|mse|rmse)\s*[:=]?\s*(\d+\.?\d*)"
+    ]
+    combined_metric_pattern = r"(?:" + "|".join(metric_patterns) + r")"
+
+    # Extract models
     models = set()
-    metrics = defaultdict(float)
-    
     for token in doc:
-        # Check for model keywords
-        if token.text.lower() in model_keywords:
-            models.add(token.text.lower())
-        
-        # Check for metric keywords and their values
-        if token.text.lower() in metric_keywords:
-            next_token = token.nbor(1) if token.i + 1 < len(doc) else None
-            if next_token and next_token.like_num:
-                metrics[token.text.lower()] = float(next_token.text)
-    
+        if re.match(combined_model_pattern, token.text, re.IGNORECASE):
+            models.add(token.text)
+
+    # Extract metrics
+    metrics = defaultdict(float)
+    for i, token in enumerate(doc):
+        if re.match(combined_metric_pattern, token.text, re.IGNORECASE):  # Use combined_metric_pattern here
+            # Check the next token for a numeric value
+            if i + 1 < len(doc) and doc[i + 1].like_num:
+                metric_name = token.text.lower().replace(" ", "_")
+                metrics[metric_name] = float(doc[i + 1].text)
+
     return {
         "models": list(models),
         "metrics": dict(metrics)
