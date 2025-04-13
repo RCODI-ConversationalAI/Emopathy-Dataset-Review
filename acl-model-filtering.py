@@ -1,4 +1,3 @@
-import os
 import re
 import io
 import pandas as pd
@@ -16,7 +15,7 @@ def process_papers(spreadsheet_path, output_csv, sort_by="f1_score"):
     df = pd.read_csv(spreadsheet_path)
     data = []
     
-    for index, row in df[:5].iterrows():  # TODO: Remove after testing
+    for index, row in df.iterrows():
         url = row['url']
         print(f"Accessing {url}...")
         pdf_name = urlparse(url).path.split("/")[-1] + ".pdf"
@@ -86,7 +85,7 @@ def extract_performance_and_models(text):
     combined_model_pattern = r"(?:" + "|".join(model_patterns) + r")"
 
     metric_patterns = [
-        r"(accuracy|f1 score|precision|recall|auc|bleu|rouge|mse|rmse)\s*[:=]?\s*(\d+\.?\d*)"
+        r"(accuracy|f1|f1 score|f1-score|precision|recall|auc|bleu|rouge|mse|rmse)"
     ]
     combined_metric_pattern = r"(?:" + "|".join(metric_patterns) + r")"
 
@@ -104,11 +103,14 @@ def extract_performance_and_models(text):
     # Extract metrics
     metrics = defaultdict(float)
     for i, token in enumerate(doc):
-        if re.match(combined_metric_pattern, token.text, re.IGNORECASE):  # Use combined_metric_pattern here
+        cleaned_token = token.text.strip(".,:;!?()[]{}").lower()  # Clean and normalize the token
+        if re.match(combined_metric_pattern, cleaned_token, re.IGNORECASE):  # Match only the metric name
+            metric_name = cleaned_token.replace(" ", "_")  # Normalize the metric name
             # Check the next token for a numeric value
             if i + 1 < len(doc) and doc[i + 1].like_num:
-                metric_name = token.text.lower().replace(" ", "_")
                 metrics[metric_name] = float(doc[i + 1].text)
+            else:
+                metrics[metric_name] = None
 
     return {
         "models": list(models),
