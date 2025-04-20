@@ -112,8 +112,11 @@ def extract_performance_and_models(text):
             # Look for a number within 3 tokens of the metric name
             for j in range(1, 4):  # Check the next 3 tokens
                 if i + j < len(doc) and doc[i + j].like_num:
-                    metrics[metric_name] = float(doc[i + j].text)
-                    break
+                    try:
+                        metrics[metric_name] = float(doc[i + j].text)
+                        break
+                    except ValueError:
+                        pass
             else:
                 metrics[metric_name] = None  # No number found within 3 tokens
 
