@@ -41,7 +41,6 @@ def process_papers(spreadsheet_path, output_csv, sort_by="f1_score"):
                 "Authors": row['authors'],
                 "URL": row['url'],
                 "Models": ", ".join(results["models"]),
-                "Metrics": results["metrics"],
                 **results["metrics"]  # Add metrics as individual columns
             })
         except Exception as e:
@@ -87,13 +86,14 @@ def extract_performance_and_models(text):
     combined_model_pattern = r"(?:" + "|".join(model_patterns) + r")"
 
     metric_patterns = [
-        r"(accuracy|f1|f1 score|f1-score|precision|recall|auc|bleu|rouge|mse|rmse)"
+        r"accuracy", r"f1 score", r"f1-score", r"precision", r"recall",
+        r"auc", r"bleu", r"rouge", r"mse", r"rmse"
     ]
     combined_metric_pattern = r"(?:" + "|".join(metric_patterns) + r")"
 
     # Extract models
     models = set()
-    seen_models = set()  # lowercased models to avoid duplicates
+    seen_models = set()  # Lowercased models to avoid duplicates
     for token in doc:
         if re.match(combined_model_pattern, token.text, re.IGNORECASE):
             model = token.text
@@ -105,14 +105,17 @@ def extract_performance_and_models(text):
     # Extract metrics
     metrics = defaultdict(float)
     for i, token in enumerate(doc):
-        cleaned_token = token.text.strip(".,:;!?()[]{}").lower()  # Clean and normalize the token
-        if re.match(combined_metric_pattern, cleaned_token, re.IGNORECASE):  # Match only the metric name
+        # Clean and normalize the token
+        cleaned_token = token.text.strip(".,:;!?()[]{}").lower()
+        if re.fullmatch(combined_metric_pattern, cleaned_token):  # Exact match for metric name
             metric_name = cleaned_token.replace(" ", "_")  # Normalize the metric name
-            # Check the next token for a numeric value
-            if i + 1 < len(doc) and doc[i + 1].like_num:
-                metrics[metric_name] = float(doc[i + 1].text)
+            # Look for a number within 3 tokens of the metric name
+            for j in range(1, 4):  # Check the next 3 tokens
+                if i + j < len(doc) and doc[i + j].like_num:
+                    metrics[metric_name] = float(doc[i + j].text)
+                    break
             else:
-                metrics[metric_name] = None
+                metrics[metric_name] = None  # No number found within 3 tokens
 
     return {
         "models": list(models),
