@@ -37,9 +37,11 @@ def process_papers(spreadsheet_path, output_csv, sort_by="f1_score"):
             results = extract_performance_and_models(text)
             
             data.append({
-                "file": pdf_name,
-                "models": ", ".join(results["models"]),
-                "metrics": results["metrics"],
+                "Title": row['title'],
+                "Authors": row['authors'],
+                "URL": row['url'],
+                "Models": ", ".join(results["models"]),
+                "Metrics": results["metrics"],
                 **results["metrics"]  # Add metrics as individual columns
             })
         except Exception as e:
