@@ -86,7 +86,7 @@ def extract_performance_and_models(text):
     combined_model_pattern = r"(?:" + "|".join(model_patterns) + r")"
 
     metric_patterns = [
-        r"accuracy", r"f1 score", r"f1-score", r"precision", r"recall",
+        r"accuracy", r"f1", r"precision", r"recall",
         r"auc", r"bleu", r"rouge", r"mse", r"rmse"
     ]
     combined_metric_pattern = r"(?:" + "|".join(metric_patterns) + r")"
@@ -107,18 +107,23 @@ def extract_performance_and_models(text):
     for i, token in enumerate(doc):
         # Clean and normalize the token
         cleaned_token = token.text.strip(".,:;!?()[]{}").lower()
-        if re.fullmatch(combined_metric_pattern, cleaned_token):  # Exact match for metric name
-            metric_name = cleaned_token.replace(" ", "_")  # Normalize the metric name
+        match = re.search(combined_metric_pattern, cleaned_token)
+        if match:
+            metric_name = match.group(0).replace(" ", "_")  # Normalize the metric name
             # Look for a number within 3 tokens of the metric name
-            for j in range(1, 4):  # Check the next 3 tokens
-                if i + j < len(doc) and doc[i + j].like_num:
+            for j in range(-5, 6):  # Check the previous 5 tokens and the next 5 tokens
+                if i + j >= 0 and i + j < len(doc) and doc[i + j].like_num:
                     try:
-                        metrics[metric_name] = float(doc[i + j].text)
-                        break
+                        value = float(doc[i + j].text)
+                        # Check if the value is a valid number
+                        if (metric_name in ["accuracy", "f1", "precision", "recall", "auc", "bleu", "rouge"] and 0 <= value <= 1) or \
+                            (metric_name in ["mse", "rmse"] and value >= 0):
+                                metrics[metric_name] = value
+                                break
                     except ValueError:
                         pass
             else:
-                metrics[metric_name] = None  # No number found within 3 tokens
+                metrics[metric_name] = None  # No value found
 
     return {
         "models": list(models),
