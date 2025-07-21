@@ -65,7 +65,9 @@ We are currently analyzing emerging trends in emotion and empathy research. Expe
 CKJ: We are working on this on [a separate sheet](https://docs.google.com/spreadsheets/d/1704Q1WFzSVgyDUeczfqA7h7QPOQgYPyXtyOO2MJmFHk/edit?gid=1071129490#gid=1071129490)
 
 ### Emotion
-
+| Dataset | Author | Year	| Conversation Setting | Corpus Setting	| Modality | Source	| Labels | Annotation	| Statistics | Dataset Link | Paper Link |
+| ------- | ------ | ---- | -------------------- | -------------- | -------- | ------ | ------ | ---------- | ---------- | ------------ | ---------- |
+| IEMOCAP | Busso et al. | 2008 | Dyadic | Laboratory | Text/audio/video (facial/hand movements) | The use of plays (scripted sessions), and improvisation based hypothetical scenarios (spontaneous sessions) | <ul><li>Categorical: 8 emotions (Ekman's 7 emotions + neutral)</li><li>Continuous: activation, valency, etc.</li></ul> | Subjects after recording (self-assessment) & 6 human evaluators | <ul><li>ten actors (female 5, male 5) were recorded in dyadic sessions (5 sessions with 2 subjects each)</li><li>12 hours</li><li>10039 (scripted session: 5255 turns; spontaneous sessions: 4784 turns) with an average duration of 4.5 seconds. The average value of words per turn was 11.4.</li></ul> | [By request](https://sail.usc.edu/iemocap/index.html) | [IEMOCAP: Interactive emotion dyadic motion capture database](https://sail.usc.edu/iemocap/Busso_2008_iemocap.pdf) |
 ### Empathy
 
 ---
