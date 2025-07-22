@@ -67,11 +67,12 @@ CKJ: We are working on this on [a separate sheet](https://docs.google.com/spread
 ### Emotion
 | Dataset | Author | Year	| Conversation Setting | Corpus Setting	| Modality | Source	| Labels | Annotation	| Statistics | Dataset Link | Paper Link |
 | ------- | ------ | ---- | -------------------- | -------------- | -------- | ------ | ------ | ---------- | ---------- | ------------ | ---------- |
-| IEMOCAP | Busso et al. | 2008 | Dyadic | Laboratory | Text/audio/video (facial/hand movements) | The use of plays (scripted sessions), and improvisation based hypothetical scenarios (spontaneous sessions) | <ul><li>Categorical: 8 emotions (Ekman's 7 emotions + neutral)</li><li>Continuous: activation, valency, etc.</li></ul> | Subjects after recording (self-assessment) & 6 human evaluators | <ul><li>ten actors (female 5, male 5) were recorded in dyadic sessions (5 sessions with 2 subjects each)</li><li>12 hours</li><li>10039 (scripted session: 5255 turns; spontaneous sessions: 4784 turns) with an average duration of 4.5 seconds. The average value of words per turn was 11.4.</li></ul> | [By request](https://sail.usc.edu/iemocap/index.html) | [IEMOCAP: Interactive emotion dyadic motion capture database](https://sail.usc.edu/iemocap/Busso_2008_iemocap.pdf) |
+| IEMOCAP | Busso et al. | 2008 | Dyadic | Laboratory | Text/audio/video (facial/hand movements) | The use of plays (scripted sessions), and improvisation based hypothetical scenarios (spontaneous sessions) | <ul><li>Categorical: 8 emotions (Ekman's 7 emotions + neutral)</li><li>Continuous: activation, valency, etc.</li></ul> | Subjects after recording (self-assessment) & 6 human evaluators | <ul><li>ten actors (female 5, male 5) were recorded in dyadic sessions (5 sessions with 2 subjects each)</li><li>12 hours</li><li>10039 (scripted session: 5255 turns; spontaneous sessions: 4784 turns) with an average duration of 4.5 seconds. The average value of words per turn was 11.4.</li></ul> | [By request](https://sail.usc.edu/iemocap/index.html) | [IEMOCAP: Interactive emotion dyadic motion capture database](https://sail.usc.edu/iemocap/Busso_2008_iemocap.pdf) | <!-- rows 2- 33 go here> | BoLD | Yu Luo, et al. | 2018 | Emotional expression and body movement | Capture spontaneous bodily expressions in naturalistic settings | Visual (videos) | Diverse video sources to ensure a wide range of spontaneous bodily expressions | <ul><li>categorical</li>
+<li>emotion categories</li></ul> | <ul><li>Annotations include emotional labels assigned to each video clip, focusing on perceived emotions based on body movements</li></ul> |<ul><li>Contains 9,876 video clips featuring 13,239 human characters</li></ul> | [Body Language Dataset](https://paperswithcode.com/dataset/bold) | [ARBEE: Towards Automated Recognition of Bodily Expression of Emotion In the Wild](https://arxiv.org/abs/1808.09568) |
 ### Empathy
 
 ---
-
+<ul><li></li></ul>
 ## SOTA ML Models
 
 ### Emotion Recognition
